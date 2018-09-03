@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "React Components",
   "main": "build/index.js",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -20,7 +23,7 @@
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.4.2"
   }
 }
