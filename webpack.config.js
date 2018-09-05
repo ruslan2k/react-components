@@ -2,14 +2,14 @@ const path = require('path')
 const pkg = require('./package.json')
 
 module.exports = {
+  mode: 'development',
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    // library: pkg.name,
-    // libraryTarget: 'commonjs2'
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
