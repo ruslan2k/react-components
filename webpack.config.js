@@ -1,13 +1,17 @@
 const path = require('path')
 const pkg = require('./package.json')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    test: './src/test.js'
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -22,12 +26,22 @@ module.exports = {
       }
     ]
   },
-  externals: {
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React'
-    }
-  }
+  devServer: {
+    disableHostCheck: true,
+    contentBase: path.join(__dirname, 'build'),
+    host: '0.0.0.0',
+    port: 9001,
+    hot: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  // externals: {
+  //   react: {
+  //     commonjs: 'react',
+  //     commonjs2: 'react',
+  //     amd: 'React',
+  //     root: 'React'
+  //   }
+  // }
 }
